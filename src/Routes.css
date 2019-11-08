@@ -1,0 +1,67 @@
+.CreateRoutes{
+	position:relative;
+	overflow:hidden;
+	width:100vw;
+	height:100vh;
+	font-size:16px;
+	font-weight: bold;
+	color: rgb(43, 168, 11);
+}
+.CreateRoutes .leftSide{
+	margin-right:250px;
+	height:inherit;
+}
+.CreateRoutes .rightSide{
+	float:right;
+	width:250px;
+}
+.CreateRoutes .map{
+	height:inherit;
+}
+
+.CreateRoutes .SubmitInput{
+	position:relative;
+	padding:10px 10px 0;
+}
+.CreateRoutes .SubmitInput input{
+	width:100%;
+	box-sizing: border-box;
+	font-weight: bold;
+}
+
+.PointList{
+	margin:15px 0 0;
+	overflow-x:hidden;
+	overflow-y:scroll;
+}
+
+.PointList .item{
+	position:relative;
+	margin:0 0 2px;
+	cursor:pointer;
+}
+.PointList .item:hover{
+	background:#EEE;
+}
+.PointList .item .title{
+	word-break:break-all;
+	max-width:200px;
+	display:block;
+	padding:5px 10px;
+}
+.PointList .item .remove{
+	position:absolute;
+	top:0;
+	bottom:0;
+	right:5px;
+	margin:auto;
+	height:20px;
+	width:15px;
+	text-align:center;
+}
+.PointList .item .remove:before{
+	content:'x';
+	font-size:12px;
+	font-weight: bold;
+	color:rgb(245, 4, 4);
+}
