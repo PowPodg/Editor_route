@@ -6,7 +6,8 @@ The user can create on the map of the route, indicating that the initial, final 
 
 To run the application - 
 `npm: install`
-`npm: start`  
+`npm: start`   
+For render verification `npm: test`
 
 Or link: 
 <https://rout-map-2e63b.web.app/>
