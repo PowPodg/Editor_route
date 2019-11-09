@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cssClasses from './MapYandex.css';
 import WaitingInit from '../WaitingInit/WaitingInit'
+import ErrorPlace from './ErrorPlace/ErrorPlace'
 
 class MapYandex extends Component {
-	
+
 	stateCur = 0
 	markers = []
 	mapCur = {}
@@ -24,6 +25,8 @@ class MapYandex extends Component {
 		this.state = {
 			markers: [],
 			loading: true,
+			placeLocal: this.props.placeLocal,
+			isExistPlace: 0,
 		};
 
 		this.initMapYand();
@@ -77,16 +80,24 @@ class MapYandex extends Component {
 		} );
 
 		this.renderPath();
+
 		return (
 			<>
 				{ this.state.loading
 					? <WaitingInit />
 					:
-					<div
-						className={ cssClasses.MapYandex }
-						ref={ this.OutRefMapRoutes }
-					>
-					</div>
+					<>
+						{
+							!this.state.isExistPlace
+								? <ErrorPlace />
+								: null
+						}
+						<div
+							className={ cssClasses.MapYandex }
+							ref={ this.OutRefMapRoutes }
+						>
+						</div>
+					</>
 				}
 			</>
 		)
@@ -113,6 +124,10 @@ class MapYandex extends Component {
 	}
 
 	async componentDidMount () {
+		clearTimeout();
+		this.setState( {
+			placeLocal: this.props.placeLocal
+		} )
 		await window.addEventListener( 'resize', this.handleWinResize );
 	}
 
@@ -139,11 +154,14 @@ class MapYandex extends Component {
 
 				this.stateCur = 2;
 
-				window.ymaps.geocode( 'London' )
+				window.ymaps.geocode( this.state.placeLocal )
 					.then( ( res ) => {
 						this.mapCur.setCenter(
 							res.geoObjects.get( 0 ).geometry.getCoordinates()
 						)
+						this.setState( {
+							isExistPlace: res.metaData.geocoder.found
+						} )
 					} )
 			} )
 				.then( ( res ) => {

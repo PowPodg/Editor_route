@@ -1,0 +1,9 @@
+.ErrorPlace {
+	position: absolute;
+	font-size: 3em;
+	font-weight: bolder;
+	color: red;
+	z-index: 1;
+	top: 35%;
+	left: 20%;
+}

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import MapYandex from '../map/MapYandex';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 import arrayMove from 'array-move'
-import cssClasses from './Routes.css';
+import cssClasses from './Routes.css'
+import constants from '../Сonstants/Сonstants'
 
 class Routes extends Component {
 	constructor ( props ) {
@@ -49,7 +50,10 @@ class Routes extends Component {
 					</form>
 				</div>
 				<div className={ cssClasses.leftSide }>
-					<MapYandex markers={ this.state.points } />
+					<MapYandex
+						markers={ this.state.points }
+						placeLocal={ constants.PLACE_LOCAL }
+					/>
 				</div>
 			</div>
 		);
