@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
+import cssClasses from './MapYandex.css';
+import WaitingInit from '../WaitingInit/WaitingInit'
 
-import cssClasses from './Routes.css';
-
-import WaitingInit from './WaitingInit/WaitingInit'
-class MapRoutes extends Component {
+class MapYandex extends Component {
+	
 	stateCur = 0
 	markers = []
 	mapCur = {}
@@ -84,7 +83,7 @@ class MapRoutes extends Component {
 					? <WaitingInit />
 					:
 					<div
-						className={ cssClasses.map }
+						className={ cssClasses.MapYandex }
 						ref={ this.OutRefMapRoutes }
 					>
 					</div>
@@ -116,6 +115,7 @@ class MapRoutes extends Component {
 	async componentDidMount () {
 		await window.addEventListener( 'resize', this.handleWinResize );
 	}
+
 	componentWillUnmount () {
 		window.removeEventListener( 'resize', this.handleWinResize );
 	}
@@ -161,4 +161,5 @@ class MapRoutes extends Component {
 			await this.mapCur.container.fitToViewport();
 	}
 }
-export default MapRoutes
+
+export default MapYandex

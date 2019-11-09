@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import MapRoutes from './MapRoutes';
-import { SortableContainer, SortableElement, SortableHandle, arrayMove } from 'react-sortable-hoc';
-
+import MapYandex from '../map/MapYandex';
+import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
+import arrayMove from 'array-move'
 import cssClasses from './Routes.css';
 
 class Routes extends Component {
@@ -25,13 +25,13 @@ class Routes extends Component {
 			</div>
 		) );
 		const SortableList = SortableContainer( ( { points } ) => (
-			<div className={ cssClasses.PointList }>
+			<div className={ cssClasses.SortableList }>
 				{ points.map( ( item ) => <SortableItem key={ item.id } index={ item.index } item={ item } /> ) }
 			</div>
 		) );
 
 		return (
-			<div className={ cssClasses.CreateRoutes } ref={ this.OutRefRoutes }>
+			<div className={ cssClasses.Routes } ref={ this.OutRefRoutes }>
 				<div className={ cssClasses.rightSide }>
 					<form onSubmit={ this.createMarker } method="post">
 						<div>
@@ -49,7 +49,7 @@ class Routes extends Component {
 					</form>
 				</div>
 				<div className={ cssClasses.leftSide }>
-					<MapRoutes markers={ this.state.points } />
+					<MapYandex markers={ this.state.points } />
 				</div>
 			</div>
 		);
@@ -67,6 +67,7 @@ class Routes extends Component {
 	async componentDidMount () {
 		await window.addEventListener( 'click', this.handleWinClick.bind() )
 	}
+
 	handleWinClick = () => {
 		if ( window.mapCur ) {
 			window.mapCur.events.add( 'click', ( e ) => {
