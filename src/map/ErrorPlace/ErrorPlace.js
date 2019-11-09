@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import cssClasses from './ErrorPlace.css'
+import constants from '../../Сonstants/Сonstants'
 
 class ErrorPlace extends Component {
 
@@ -15,7 +16,7 @@ class ErrorPlace extends Component {
             this.setState( {
                 render: true
             } )
-        }.bind( this ), 1000 )
+        }.bind( this ), constants.DELAY_PLACE_VISUAL_ERROR)
     }
     render () {
         let renderOut = null
