@@ -8,7 +8,7 @@ After the mouse cursor to the desired location, you can fix the coordinates of t
 To run the application - 
 `npm: install`
 `npm: start`   
-For render verification `npm: test`
+For verification  render `npm: test`
 
 Or link: 
 <https://rout-map-2e63b.web.app/>
