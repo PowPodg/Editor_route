@@ -1,6 +1,6 @@
 # Editor route
 
-## Test Application
+## Sample react application
 
 The user can create on the map of the route, indicating that the initial, final and intermediate points of movement.
 

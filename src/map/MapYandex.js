@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cssClasses from './MapYandex.css';
 import WaitingInit from '../WaitingInit/WaitingInit'
 import ErrorPlace from './ErrorPlace/ErrorPlace'
+import constants from '../Сonstants/Сonstants'
 
 class MapYandex extends Component {
 
@@ -62,7 +63,7 @@ class MapYandex extends Component {
 				},
 				{
 					iconLayout: 'default#imageWithContent',
-					iconImageHref: 'http://webmap-blog.ru/files/gmap/gicon/mm_20_red.png',
+					iconImageHref: constants.ICON_IMAGE_HREF,
 					iconImageSize: [20, 30],
 					iconImageOffset: [-10, -30],
 					preset: "islands#redStretchyIcon",
