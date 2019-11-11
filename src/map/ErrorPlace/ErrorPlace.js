@@ -12,11 +12,11 @@ class ErrorPlace extends Component {
     }
 
     componentDidMount () {
-        setTimeout( function () {
+        setTimeout( () =>{
             this.setState( {
                 render: true
             } )
-        }.bind( this ), constants.DELAY_PLACE_VISUAL_ERROR)
+        }, constants.DELAY_PLACE_VISUAL_ERROR)
     }
     render () {
         let renderOut = null
