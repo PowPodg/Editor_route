@@ -12,9 +12,8 @@
 .Routes .rightSide{
 	float:right;
 	width:200px;
+	text-align:center;
 }
-
-
 
 .Routes .SubmitInput{
 	position:relative;
@@ -60,7 +59,7 @@
 
 .Routes .leftSide{
 	position: relative;
-	margin-right:250px;
+	margin-right:200px;
 	height:inherit;
 	z-index: 10;
 }
