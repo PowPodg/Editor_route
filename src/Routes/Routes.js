@@ -1,62 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { AddPlace } from '../redux/actions/actions'
 import MapYandex from '../map/MapYandex';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
-import arrayMove from 'array-move'
-import cssClasses from './Routes.css'
-import constants from '../Сonstants/Сonstants'
+import arrayMove from 'array-move';
+import cssClasses from './Routes.css';
 
 class Routes extends Component {
+
 	constructor ( props ) {
 		super( props );
 
 		this.OutRefRoutes = React.createRef();
 		this.OutmarkerName = React.createRef();
+
 		this.state = {
 			points: [],
 			coords: null,
 		};
-	}
-
-	render () {
-		const DragHandle = SortableHandle( ( { title } ) => <span className={ cssClasses.title }>{ title }</span> );
-		const SortableItem = SortableElement( ( { item } ) => (
-			<div className={ cssClasses.item }>
-				<DragHandle title={ item.title } />
-				<span className={ cssClasses.remove } onClick={ ( e ) => this.removeMarker( item.id, e ) } />
-			</div>
-		) );
-		const SortableList = SortableContainer( ( { points } ) => (
-			<div className={ cssClasses.SortableList }>
-				{ points.map( ( item ) => <SortableItem key={ item.id } index={ item.index } item={ item } /> ) }
-			</div>
-		) );
-
-		return (
-			<div className={ cssClasses.Routes } ref={ this.OutRefRoutes }>
-				<div className={ cssClasses.rightSide }>
-					<form onSubmit={ this.createMarker } method="post">
-						<div>
-							<div className={ cssClasses.SubmitInput }>
-								<input
-									type="text"
-									ref={ this.OutmarkerName }
-									defaultValue=""
-									placeholder="Add a new point"
-								/>
-							</div>
-							<SortableList points={ this.state.points } onSortEnd={ this.onSortEnd } useDragHandle={ true } />
-						</div>
-						<input type="hidden" />
-					</form>
-				</div>
-				<div className={ cssClasses.leftSide }>
-					<MapYandex
-						markers={ this.state.points }
-						placeLocal={ constants.PLACE_LOCAL }
-					/>
-				</div>
-			</div>
-		);
 	}
 
 	onSortEnd = ( { oldIndex, newIndex } ) => {
@@ -69,7 +30,7 @@ class Routes extends Component {
 	};
 
 	async componentDidMount () {
-		await window.addEventListener( 'click', this.handleWinClick.bind() )
+		await window.addEventListener( 'click', this.handleWinClick.bind() );
 	}
 
 	handleWinClick = () => {
@@ -110,11 +71,82 @@ class Routes extends Component {
 
 	removeMarker ( id, e ) {
 		e.stopPropagation();
-
 		this.setState( {
 			points: this.state.points.filter( ( item ) => item.id !== id ),
 		} );
 	}
+
+	render () {
+
+		const DragHandle = SortableHandle( ( { title } ) => <span className={ cssClasses.title }>{ title }</span> );
+
+		const SortableItem = SortableElement( ( { item } ) => (
+			<div className={ cssClasses.item }>
+				<DragHandle title={ item.title } />
+				<span className={ cssClasses.remove } onClick={ ( e ) => this.removeMarker( item.id, e ) } />
+			</div>
+		) );
+
+		const SortableList = SortableContainer( ( { points } ) => (
+			<div className={ cssClasses.SortableList }>
+				{ points.map( ( item ) => <SortableItem key={ item.id } index={ item.index } item={ item } /> ) }
+			</div>
+		) );
+
+		return (
+			<div className={ cssClasses.Routes } ref={ this.OutRefRoutes }>
+				<div className={ cssClasses.rightSide }>
+					<form onSubmit={ this.createMarker } method="post">
+						<div>
+							<div className={ cssClasses.SubmitInput }>
+								<input
+									type="text"
+									ref={ this.OutmarkerName }
+									defaultValue=""
+									placeholder="Add a new point"
+								/>
+							</div>
+							<SortableList points={ this.state.points } onSortEnd={ this.onSortEnd } useDragHandle={ true } />
+						</div>
+					</form>
+				</div>
+				<div className={ cssClasses.leftSide }>
+					<b className={ cssClasses.InputPlace }>
+						Place on the map:
+						<input
+							type="text"
+							className={ cssClasses.Place }
+							defaultValue={ this.props.placeM }
+							onKeyPress={ async ( event ) => this.props.onAddPlace( event, true ) }
+							onChange={ async ( event ) => this.props.onAddPlace( event, false ) }
+						/>
+					</b>
+					{
+						this.props.placeM
+							?
+							<MapYandex
+								markers={ this.state.points }
+								placeLocal={ this.props.placeM }
+							/>
+							: null
+					}
+				</div>
+			</div>
+		);
+	}
+
 }
 
-export default Routes;
+function mapStateToProps ( state ) {
+	return {
+		placeM: state.addPlace.placeM
+	}
+}
+
+function mapDispatchToProps ( dispatch ) {
+	return {
+		onAddPlace: async ( event, valBool ) => dispatch( AddPlace( event, valBool ) )
+	}
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( Routes )

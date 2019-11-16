@@ -4,8 +4,11 @@ import Routes from './Routes/Routes';
 class App extends Component {
 
 	render () {
-		return (<Routes />)
+
+		return (
+			<Routes />
+		)
 	}
 }
 
-export default App;
+export default App

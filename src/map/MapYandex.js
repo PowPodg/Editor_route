@@ -30,7 +30,7 @@ class MapYandex extends Component {
 			isExistPlace: 0,
 		};
 
-		this.initMapYand();
+		this.initMapYand(props.destroyMap);
 	}
 
 	render () {
@@ -129,6 +129,7 @@ class MapYandex extends Component {
 		this.setState( {
 			placeLocal: this.props.placeLocal
 		} )
+		//await this.initMapYand();
 		await window.addEventListener( 'resize', this.handleWinResize );
 	}
 
@@ -143,6 +144,7 @@ class MapYandex extends Component {
 	async initMapYand () {
 
 		if ( this.stateCur ) return void ( 0 )
+		
 
 		this.stateCur = 1;
 		try {

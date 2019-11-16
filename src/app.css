@@ -1,0 +1,7 @@
+.App {
+	position: relative;
+	display: inline-block;
+	float: right;
+	width: 100px;
+	z-index: 10;
+}
