@@ -78,6 +78,7 @@
 .Place {
 	position: absolute;
 	margin: 0px 10px;
+	background: transparent;
 	font-size:25px;
 	font-weight: bold;
 	text-align: center;
