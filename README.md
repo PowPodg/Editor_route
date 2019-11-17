@@ -2,7 +2,7 @@
 
 ## Sample React-Redux application
 
-The user can create on the map of the route, indicating that the initial, final and intermediate points of movement.   Сan reorder the points by dragging them with the mouseю.    
+The user can create on the map of the route, indicating that the initial, final and intermediate points of movement.   You can also change the order of the points by dragging them with the mouse in the vertical list.   
 
 After the mouse cursor to the desired location, you can fix the coordinates of the next point by pressing the left mouse button.    
 
