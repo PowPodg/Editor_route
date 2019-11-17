@@ -12,7 +12,6 @@
 .Routes .rightSide{
 	float:right;
 	width:200px;
-	text-align:center;
 }
 
 .Routes .SubmitInput{
@@ -91,13 +90,15 @@
 }
 @-webkit-keyframes blink1 {
 	0% { opacity: 1;}
-	50% { opacity: 0.4;}
+	50% { opacity: 0.2;}
 	100%  { opacity: 1;}
   }
   @keyframes blink1 {
 	0%  { opacity: 1;}
-	50%  { opacity: 0.4;}
+	50%  { opacity: 0.2;}
 	100% { opacity: 1;}
   }
+
+  
 
  
