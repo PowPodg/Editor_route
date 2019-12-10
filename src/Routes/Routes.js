@@ -10,8 +10,7 @@ class Routes extends Component {
 
 	constructor ( props ) {
 		super( props );
-
-		this.OutRefRoutes = React.createRef();
+		
 		this.OutmarkerName = React.createRef();
 
 		this.state = {
@@ -94,7 +93,7 @@ class Routes extends Component {
 		) );
 
 		return (
-			<div className={ cssClasses.Routes } ref={ this.OutRefRoutes }>
+			<div className={ cssClasses.Routes }>
 				<div className={ cssClasses.rightSide }>
 					<form onSubmit={ this.createMarker } method="post">
 						<div>
